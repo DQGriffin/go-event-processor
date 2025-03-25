@@ -1,0 +1,12 @@
+# Binaries
+*.exe
+*.exe~
+
+# Ignore my arch nemesis
+**/.DS_Store
+
+# Ignore env files
+**/.env
+
+# Generated files
+*.gen.go
