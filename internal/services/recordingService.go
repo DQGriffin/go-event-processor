@@ -10,14 +10,14 @@ import (
 	"github.com/DQGriffin/go-event-processor/internal/types"
 )
 
-func SendToRecordingHandler(payload types.RecordingHandlerPayload) {
+func SendToRecordingHandler(payload types.RecordingHandlerPayload) error {
 	log.Println("Sending payload to recording handler")
 
 	json, err := json.Marshal(payload)
 	if err != nil {
 		log.Println("Failed to marshal JSON body")
 		log.Println(err.Error())
-		return
+		return err
 	}
 
 	res, err := http.Post(
@@ -29,10 +29,10 @@ func SendToRecordingHandler(payload types.RecordingHandlerPayload) {
 	if err != nil {
 		log.Println("POST request failed")
 		log.Println(err.Error())
-		return
+		return err
 	}
 	defer res.Body.Close()
 
 	log.Println("POST Status: ", res.Status)
-
+	return nil
 }
